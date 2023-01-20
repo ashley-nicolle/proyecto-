@@ -1,0 +1,176 @@
+import pandas as pd 
+import datetime
+import matplotlib.pyplot as plt 
+from pandas import Series, DataFrame
+#fecha=
+#print(f'Ultima actualización:{time.asctime()} \n') #fecha de ejecución de schipt
+#print(f'Ultima actualización:{time.asctime()} \n')
+#_________________________________________________DataFrame para clase de matemáticas ____________________________________")
+
+data =pd.read_csv('proyecto_pytom.csv 1.csv',sep=';')
+
+df_mate=data[['school', 'sex', 'age', 'address', 'Pstatus', 'guardian', 'traveltime', 'studytime', 'failures', 'paid', 'internet', 'health', 'absences', 'G1','G2','G3']]
+
+#____________________________________________agrupacion de escuela ___________________________________________________")
+df_mate_sep=df_mate.groupby(['school'])
+df_mate_sep
+
+for key,group in df_mate_sep:
+
+    if key=='GP':
+           gp_mate= group
+    elif key=='MS':
+            ms_mate=group
+            
+            
+#_____________________________________________DataFrame para clase de portugues____________________________________")
+data2= pd.read_csv('proyecto_pytom.csv', sep=';')
+
+df_portu=data2[['school', 'sex', 'age', 'address', 'Pstatus', 'guardian', 'traveltime', 'studytime', 'failures', 'paid', 'internet', 'health', 'absences', 'G1','G2','G3']]
+
+#_______________________________________________Agrupacion de escuela _____________________________________________")
+df_portu_sep=df_portu.groupby(['school'])
+
+for key,group in df_portu_sep:
+
+    if key=='GP':
+          gp_portu= group
+    elif key=='MS':
+           ms_portu= group
+t_est_df_mate= len(df_mate)
+print("t_est_df_mate=",t_est_df_mate)
+
+#______________________________________________porcentaje de hombres y mujeres en clase de matemáticas _____________')
+t_est_df_mate_sep_sex= df_mate.groupby(['sex'])
+
+for key,group in t_est_df_mate_sep_sex:
+
+    if key=='M':
+           t_m_df_mate_df= group
+    elif key=='F':
+          t_m_df_mate_df= group
+t_m_df_mate=len(t_m_df_mate_df)
+print("t_m_df_mate=",t_m_df_mate)
+
+porcentaje_de_M= t_m_df_mate/t_est_df_mate *100
+print(porcentaje_de_M)
+
+t_m_d_mate=len(t_m_df_mate_df)
+print("t_m_df_mate=",t_m_df_mate)
+
+porcentaje_de_F= t_m_df_mate/t_est_df_mate *100
+print(porcentaje_de_F)
+
+#___________________________porcentaje de hombres y mujeres clase de portugues ______________________') 
+
+t_est_df_portu= len(df_portu)
+print("t_est_df_portu=",t_est_df_portu)
+t_est_df_portu_sep_sex= df_portu.groupby(['sex'])
+
+for key,group in t_est_df_portu_sep_sex:
+
+    if key=='M':
+           t_m_df_portu_df= group
+    elif key=='F':
+          t_m_df_portu_df= group
+t_m_df_portu=len(t_m_df_portu_df)
+print("t_m_df_portu=",t_m_df_portu)
+
+porcentaje_de_M= t_m_df_portu/t_est_df_portu *100
+print(porcentaje_de_M)
+
+t_m_d_portu=len(t_m_df_portu_df)
+print("t_m_df_portu=",t_m_df_portu)
+
+porcentaje_de_F= t_m_df_portu/t_est_df_portu *100
+print(porcentaje_de_F)
+
+#_______________________________________________promedio de edades del curso matemáticas ________________")
+
+df = pd.DataFrame(data)
+mean_df = df['age'].mean()
+print(mean_df)
+
+#______________________________________________promedio de edades del curso de portugues___________________")
+
+df = pd.DataFrame(data2)
+mean_df = df['age'].mean()
+print(mean_df)
+
+#________________________________________________promedio de notas de cada escuela ______________________________________
+
+
+#________________________________________________promedio de curso de matematicas G1______________________________")
+
+df = pd.DataFrame(data)
+mean_df = df['G1'].mean()
+print(mean_df)
+#________________________________________________promedio de curso de matematicas G2_______________________________")
+
+df = pd.DataFrame(data)
+mean_df = df['G2'].mean()
+print(mean_df)
+#________________________________________________promedio de curso de matematicas G3_______________________________")
+df = pd.DataFrame(data)
+mean_df = df['G3'].mean()
+print(mean_df)
+#________________________________________________promedio de curso de portugues G1_________________________________")
+df = pd.DataFrame(data2)
+mean_df = df['G1'].mean()
+print(mean_df)
+#________________________________________________promedio de curso de portugues G2_________________________________")
+
+df = pd.DataFrame(data2)
+mean_df = df['G2'].mean()
+print(mean_df)
+#________________________________________________promedio de curso de portugues G3_________________________________")
+df = pd.DataFrame(data2)
+mean_df = df['G3'].mean()
+print(mean_df)
+print("_______________________________________________valor maximo de ausencias del curso de matemática___________________")
+#df_mate ['absences']. max ()
+#ausencias_m=df_mate ['absences']. max ()
+print("______________________________________________total de clases en el curso de matemática___________________________")
+t_d_clases_m= df_mate ['absences']. max ()
+print(t_d_clases_m)
+print("_______________________________________________valor maximo de ausencias del curso de portugues____________________")
+#maxClm = df.max()['absences']
+#df_portu ['absences']. max ()
+#ausencias_p=df_portu ['absences']. max ()
+print("______________________________________________total de clases en el curso de portugues ___________________________")
+t_d_clases_p= df_portu ['absences']. max ()
+print(t_d_clases_p)
+
+print("____________________________________porcentaje de asistencia de la clase de matematica____________________________")
+for index in range(df.shape[1]):
+    print('Índice de la columna: ', index)
+    print('Contenido de la columna: ', df.iloc[: , index].values)
+for u in range (351,395 ):
+    df_mate.procentage_asistencia[u]= 100-((df_mate.absences[u]/t_d_clases_p)*100    
+porcentaje_mate=100-((ausencias_m/t_d_clases_m)*100)
+print(porcenjate_mate)
+
+#print("____________________________________porcentaje de asistencia de la clase de portugues_____________________________")
+porcentaje_portu=100-((ausencias_p/t_d_clases_p)*100)
+print(porcenjate_portu)
+df_mate.insert(1,"Approved","-")
+for u in range (351,395):
+    if df_mate.extra[u]<80:
+        df_mate.at[u,'Approved']="0"
+    elif (df_mate.extra[u]>80)and (15<df_mate,G3[u]>10):
+        df_mate.at[u,'Approved']="1"
+    elif (df_mate.extra[u]>80) and (15<df_mate.G3[u]):
+        df_mate.at[u,'Approved']="1"
+    elif (df_mate.extra[u]>80)and (15<df_mate.G3[u]):
+        df_mate.at[u,'Approved']='1'
+df_portu.insert(1,"Approved","-")                                           
+for u in range (351,395):
+    if df_portu.extra[u]<80:
+        df_portu.at[u,'Approved']="0"
+    elif (df_portu.extra[u]>80)and (15<df_portu,G3[u]>10):
+        df_portu.at[u,'Approved']="1"
+    elif (df_portu.extra[u]>80) and (15<df_portu.G3[u]):
+        df_portu.at[u,'Approved']="1"
+    elif (df_portu.extra[u]>80)and (15<df_portu.G3[u]):
+        df_portu.at[u,'Approved']='1'                                                                                                      
+                                           
